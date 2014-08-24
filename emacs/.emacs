@@ -34,6 +34,15 @@
 (require 'auto-complete-config)
 (ac-config-default)
 
+(defun comment-or-uncomment-region-or-line ()
+    "Comments or uncomments the region or the current line if there's no active region."
+    (interactive)
+    (let (beg end)
+        (if (region-active-p)
+            (setq beg (region-beginning) end (region-end))
+            (setq beg (line-beginning-position) end (line-end-position)))
+        (comment-or-uncomment-region beg end)))
+
 (global-set-key (kbd "<f1>") 'buffer-menu)
 (global-set-key (kbd "<f9>") 'list-packages)
 (global-set-key (kbd "<f8>") 'elfeed)
@@ -41,6 +50,7 @@
 (global-set-key (kbd "<f3>") 'next-buffer)
 (global-set-key (kbd "<f11>") 'grunt-exec)
 (global-set-key (kbd "<f5>") 'ido-find-file)
+(global-set-key (kbd "M-/") 'comment-or-uncomment-region-or-line)
 
 (custom-set-variables
   '(elfeed-feeds (quote ("http://habrahabr.ru/rss"))))
@@ -88,12 +98,16 @@
 							      flymake-err-line-patterns))
 
   (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.js\\'" flymake-jslint-init))
+               '("\\.js\\'" flymake-jslint-init)))
 
-)
+;; (add-hook 'js2-mode-hook
+;; 					  (lambda ()
+;;       (flymake-mode 1)
+;;       (define-key js2-mode-map "\C-c\C-n" 'flymake-goto-next-error)))
 
-(add-hook 'js2-mode-hook
-					  (lambda ()
-      (flymake-mode 1)
-      (define-key js2-mode-map "\C-c\C-n" 'flymake-goto-next-error)))
+;; (setq-default indent-tabs-mode nil)
+;; (setq tab-width 2) ; or any other preferred value
+;; (defvaralias 'c-basic-offset 'tab-width)
+;; (defvaralias 'cperl-indent-level 'tab-width)
+
 
