@@ -1,11 +1,16 @@
 (require 'package)
 (package-initialize)
-(load-file "~/.emacs.d/elpa/railscasts-theme.el")
+
+(require 'color-theme)
+(eval-after-load "color-theme"
+	  '(progn
+			      (color-theme-initialize)
+						     (color-theme-aliceblue)))
 
 ;; melpa & marmalade repos
 (load "package")
 (package-initialize)
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (setq package-archive-enable-alist '(("melpa" deft magit)))
@@ -56,7 +61,7 @@
   '(elfeed-feeds (quote ("http://habrahabr.ru/rss"))))
 (custom-set-faces)
 
-(require 'linum+)
+;; (require 'linum+)
 ;; line numbers workaround
 (setq linum-format "%d ")
 (global-linum-mode 1)
