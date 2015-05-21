@@ -28,11 +28,6 @@
 ;; toggle off menu bar
 (menu-bar-mode 0)
 
-;;(require 'bs)
-;;(setq bs-configurations
-;;'(("files" "^\\*scratch\\*" nil nil bs-visits-non-file bs-sort-buffer-interns-are-last)))
-;;(global-set-key (kbd "<f1>") 'bs-show)
-
 (require 'auto-complete-config)
 (ac-config-default)
 
@@ -54,7 +49,6 @@
 (global-set-key (kbd "<f5>") 'ido-find-file)
 (global-set-key (kbd "M-/") 'comment-or-uncomment-region-or-line)
 
-;; (require 'linum+)
 ;; line numbers workaround
 (setq linum-format "%d ")
 (global-linum-mode 1)
@@ -97,13 +91,3 @@
 
   (add-to-list 'flymake-allowed-file-name-masks
                '("\\.js\\'" flymake-jslint-init)))
-
-;; (add-hook 'js2-mode-hook
-;; 					  (lambda ()
-;;       (flymake-mode 1)
-;;       (define-key js2-mode-map "\C-c\C-n" 'flymake-goto-next-error)))
-
-;; (setq-default indent-tabs-mode nil)
-;; (setq tab-width 2) ; or any other preferred value
-;; (defvaralias 'c-basic-offset 'tab-width)
-;; (defvaralias 'cperl-indent-level 'tab-width)
