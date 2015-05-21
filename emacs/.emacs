@@ -1,18 +1,15 @@
 (require 'package)
 (package-initialize)
 
-(require 'color-theme)
-(eval-after-load "color-theme"
-	  '(progn
-			      (color-theme-initialize)
-						     (color-theme-aliceblue)))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+(load-theme 'sanityinc-solarized-light t)
 
 ;; melpa & marmalade repos
 (load "package")
 (package-initialize)
 (add-to-list 'load-path "~/.emacs.d/lisp")
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (setq package-archive-enable-alist '(("melpa" deft magit)))
 
 ;; 2 spaces for tab
@@ -56,10 +53,6 @@
 (global-set-key (kbd "<f11>") 'grunt-exec)
 (global-set-key (kbd "<f5>") 'ido-find-file)
 (global-set-key (kbd "M-/") 'comment-or-uncomment-region-or-line)
-
-(custom-set-variables
-  '(elfeed-feeds (quote ("http://habrahabr.ru/rss"))))
-(custom-set-faces)
 
 ;; (require 'linum+)
 ;; line numbers workaround
@@ -114,5 +107,3 @@
 ;; (setq tab-width 2) ; or any other preferred value
 ;; (defvaralias 'c-basic-offset 'tab-width)
 ;; (defvaralias 'cperl-indent-level 'tab-width)
-
-
